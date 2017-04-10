@@ -1,0 +1,50 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"   ng-submit="query(true)">
+    <div class="div-btn-head">
+      <div class="btn-group btn-group-sm">
+        <button type="submit" class="btn btn-default" promise-btn="queryPromise" ng-click="query(true)">查询</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <label class="control-label col-xs-4" for="number">编号</label>
+        <div class="col-xs-8">
+          <input class="form-control" id="number" type="text" ng-model="filter.number" >
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}">
+    <div class="div-grid">
+      <table class="table table-bordered table-condensed table-striped">
+        <tr>
+          <!--<th>No</th>-->
+          <th>编号</th>
+          <th>公司抬头</th>
+          <th>发票金额</th>
+          <th>收件人</th>
+          <th>联系电话</th>
+          <th>详细地址</th>
+          <th>邮政编码</th>
+          <th>开票</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td>{{row.number}}</td>
+          <td>{{row.companyName}}</td>
+          <td>{{row.amount}}</td>
+          <td>{{row.recipients}}</td>
+          <td>{{row.phone}}</td>
+          <td>{{row.city}}{{row.region}}{{row.address}}</td>
+          <td>{{row.postcode}}</td>
+          <td>
+            <span class="text-success" ng-if="row.status == 1">已发送</span>
+            <button ng-if="row.status == 0" type="button" class="btn btn-default btn-xs " ng-click="openInvoice(row)">开具发票</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

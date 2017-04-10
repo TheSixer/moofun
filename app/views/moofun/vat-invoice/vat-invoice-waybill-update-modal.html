@@ -1,0 +1,57 @@
+<div>
+  <form name="form">
+  <mb-modal-header title="增值税发票资质申请" cancel-click="cancel()"></mb-modal-header>
+  <div class="modal-body">
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">Moofun用户手机号</div>
+          <div class="col-12-6-3">{{data.invoice.phone}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">单位名称</div>
+          <div class="col-12-6-3">{{data.invoice.company}}</div>
+          <div class="col-12-6-3 font-bold ">纳税人识别码</div>
+          <div class="col-12-6-3">{{data.invoice.taxpayerId}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">注册地址</div>
+          <div class="col-12-6-3">{{data.invoice.registerAddress}}</div>
+          <div class="col-12-6-3 font-bold ">注册电话</div>
+          <div class="col-12-6-3">{{data.invoice.registerPhone}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">开户银行</div>
+          <div class="col-12-6-3">{{data.invoice.bank}}</div>
+          <div class="col-12-6-3 font-bold ">银行账户</div>
+          <div class="col-12-6-3">{{data.invoice.bankAccount}}</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': form.expressName.$invalid, 'has-success': form.expressName.$valid}">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">快递公司</div>
+          <div class="col-12-6-3">
+            <select class="form-control" name="expressName" ng-model="data.invoice.expressName" ng-options="o.code as o.name for o in data.expressList" ng-required="true" required></select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': form.expressWaybill.$invalid, 'has-success': form.expressWaybill.$valid}">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">快递编号</div>
+          <div class="col-12-6-3">
+            <input class="form-control" type="text" maxlength="30" name="expressWaybill" ng-model="data.invoice.expressWaybill" ng-required="true" required>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-warning" ng-click="cancel()">取消</button>
+    <button class="btn btn-sm btn-success" ng-disabled="form.$invalid" ng-click="ok(data.invoice)">开具发票</button>
+  </div>
+  </form>
+</div>

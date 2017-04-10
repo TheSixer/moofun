@@ -1,0 +1,291 @@
+{
+  "code": 200,
+  "data": {
+    "MooFun管理系统": {
+      "text": "MooFun管理系统",
+      "children": {
+        "Moofun管理": {
+          "text": "Moofun管理",
+          "children": {
+            "发票管理": {
+              "text": "发票管理",
+              "children": {
+                "普票申请": {
+                  "text": "普票申请",
+                  "url": "/general-invoice/apply-list"
+                },
+                "增票申请": {
+                  "text": "增票申请",
+                  "url": "/vat-invoice/apply-list"
+                },
+                "增票资质管理": {
+                  "text": "增票资质申请管理",
+                  "url": "/general-invoice/qualification-list"
+                },
+                "发票查询": {
+                  "text": "发票查询",
+                  "url": "/general-invoice/list"
+                },
+                "增票查询": {
+                  "text": "增票查询",
+                  "url": "/vat-invoice/list"
+                }
+              }
+            },
+            "广告管理": {
+              "text": "广告管理",
+              "url": "/banners/list"
+            },
+            "用户管理": {
+              "text": "用户管理",
+              "children": {
+                "车辆解除绑定审核": {
+                  "text": "车辆解除绑定审核",
+                  "components": {
+                    "git": "1"
+                  },
+                  "url": "/usermanage/unbindvehicle"
+                },
+                "Moofun用户查询": {
+                  "text": "Moofun用户查询",
+                  "url": "/usermanage/list"
+                },
+                "积分查询和赠送": {
+                  "text": "积分查询和赠送",
+                  "url": "/usermanage/integral-query"
+                },
+                "积分设置": {
+                  "text": "积分设置",
+                  "url": "/usermanage/setIntegral"
+                },
+                "积分赠送审核": {
+                  "text": "积分赠送审核",
+                  "url": "/usermanage/integral-reviewed"
+                },
+                "车辆导航序列号审核": {
+                  "text": "车辆导航序列号审核",
+                  "url": "/usermanage/navigation"
+                }
+              }
+            },
+            "统计分析": {
+              "text": "统计分析",
+              "children": {
+                "用户分析": {
+                  "text": "用户分析",
+                  "components": {
+                    "保存": "1"
+                  },
+                  "url": "/analysis/user"
+                },
+                "留存分析": {
+                  "text": "留存分析",
+                  "components": {
+                    "保存": "1"
+                  },
+                  "url": "/analysis/reserve"
+                }
+              }
+            },
+            "用户套餐状态": {
+              "text": "用户套餐状态",
+              "url": "/user-related/package-status-report"
+            },
+            "车型鉴赏":{
+              "text":"车型鉴赏",
+              "url":"/vehicle-appreciation/vehicle-list"
+            },
+            "小程序活动":{
+              "text":"小程序活动",
+              "url":"/activity/activity-list"
+            }
+          }
+        },
+        "预约管理": {
+          "text": "预约管理",
+          "children": {
+            "预约管理": {
+              "text": "预约管理",
+              "components": {
+                "编辑": "1",
+                "核准": "1",
+                "转工单": "1",
+                "预约失败": "1",
+                "预约变更": "1",
+                "SA(接车)变更": "1",
+                "顾客档案": "1",
+                "打印": "1"
+              },
+              "url": "/order-manage/order-management"
+            },
+            "预约统计": {
+              "text": "预约统计",
+              "url": "/order-manage/order-statistics"
+            },            
+            "工位设置": {
+              "text": "工位设置",
+              "components": {
+                "统一设置": "1",
+                "更改设置": "1"
+              },
+              "url": "/index/after4sappoint/station"
+            },
+            "优惠调整": {
+              "text": "优惠调整",
+              "components": {
+                "修改": "1"
+              },
+              "url": "/order-manage/preferential-adjustment"
+            },
+            "支付查询": {
+              "text": "支付查询",
+              "url": "/order-manage/payment-query"
+            },
+            "评价查询": {
+              "text": "评价查询",
+              "url": "/order-manage/evaluation-query"
+            },
+            "取送员信息": {
+              "text": "取送员信息",
+              "components": {
+                "添加": "1"
+              },
+              "url": "/index/after4sappoint/gospersoninfo"
+            }
+          }
+        },
+        "收费服务": {
+          "text": "收费服务",
+          "children": {
+            "套餐调整": {
+              "text": "套餐调整",
+              "url": "/charge-service/package-adjustment"
+            },
+            "套餐购买查询": {
+              "text": "套餐购买查询",
+              "url": "/charge-service/package-purchase-query"
+            },
+            "会员充值记录": {
+              "text": "会员充值记录",
+              "url": "/charge-service/member-recharge-record"
+            },            
+            "预约缴费记录": {
+              "text": "预约缴费记录",
+              "url": "/charge-service/reservation-payment-record"
+            }
+          }
+        },
+        "客户资料管理": {
+          "text": "客户资料管理",
+          "children": {
+            "测试数据录入": {
+              "text": "测试数据录入",
+              "url": "/sync/car/testinsert"
+            },
+            "客户及车辆信息录入": {
+              "text": "客户及车辆信息录入",
+              "components": {
+                "保存": "1"
+              },
+              "url": "/sync/car/clientInfo"
+            },
+            "申请解除车辆绑定": {
+              "text": "申请解除车辆绑定",
+              "components": {
+                "增加": "1",
+                "删除": "1",
+                "修改": "1",
+                "保存": "1",
+                "取消": "1",
+                "刷新": "1",
+                "核准": "1",
+                "转工单": "1",
+                "预约失败": "1",
+                "预约变更": "1",
+                "SA(接车)变更": "1",
+                "顾客档案": "1",
+                "提取保养计划": "1",
+                "打印": "1",
+                "新增": "1"
+              },
+              "url": "/sync/car/unbind"
+            },
+            "车辆解绑申请查询": {
+              "text": "车辆解绑申请查询",
+              "components": {
+                "新增": "1"
+              },
+              "url": "/sync/car/carunwrap"
+            },
+            "修改客户及车辆信息": {
+              "text": "修改客户及车辆信息",
+              "components": {
+                "申请修改": "1",
+                "新增": "1"
+              },
+              "url": "/sync/car/clientinfolist"
+            },
+            "客户修改申请查询": {
+              "text": "客户修改申请查询",
+              "components": {
+                "新增": "1"
+              },
+              "url": "/sync/car/clientupdate"
+            },
+            "修改T-BOX": {
+              "text": "修改T-BOX",
+              "url": "/sync/car/tbox"
+            }
+          }
+        },
+        "其他": {
+          "text": "其他",
+          "children": {
+            "故障类别": {
+              "text": "故障类别",
+              "url": "/others/fault-classification"
+            },
+            "问卷调查": {
+              "text": "问卷调查",
+              "url": "/others/questionnaire-survey"
+            },
+            "消息推送": {
+              "text": "消息推送",
+              "url": "/others/message-push"
+            },            
+            "消息推送": {
+              "text": "消息推送",
+              "url": "/others/message-push"
+            },
+            "统计分析": {
+              "text": "统计分析",
+              "url": "/others/statistical-analysis"
+            },
+            "反馈": {
+              "text": "反馈",
+              "url": "/others/feedback"
+            },
+            "工作时间调整": {
+              "text": "工作时间调整",
+              "components": {
+                "run": "1"
+              },
+              "url": "/index/moofun/worktime"
+            },
+            "预约缴费记录": {
+              "text": "预约缴费记录",
+              "components": {
+                "更新图片": "1"
+              },
+              "url": "/index/moofun/orderaccount"
+            },
+            "会员充值记录": {
+              "text": "会员充值记录",
+              "url": "/index/moofun/vipaccount"
+            }
+          }
+        }
+      }
+    }
+  }
+}

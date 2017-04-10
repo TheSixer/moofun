@@ -1,0 +1,71 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+    <div class="div-btn-head">
+      <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button>
+      <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <input-combo type="select" title="开票状态" idname="status" ng-model="filter.status" options="o.code as o.value for o in sourceData"
+          source-data="statusList"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo type="text" title="编号" idname="number" maxlength="30" ng-model="filter.number"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo type="text" title="公司抬头"  idname="company" maxlength="30" ng-require="true"  ng-model="filter.company"></input-combo>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <input-combo type="date" title="开票时间" idname="startDate" ng-model="filter.startDate" err-msg="请按照指定格式输入时间。例如:2016-01-01"
+          output-format="'yyyy-MM-dd'" ng-disabled="false"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo type="date" title="至" idname="endDate" ng-model="filter.endDate" err-msg="请按照指定格式输入时间。例如:2016-01-01" output-format="'yyyy-MM-dd'"
+          ng-disabled="false"></input-combo>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}" >
+    <div class="div-grid" >
+      <table class="table table-bordered table-condensed table-striped" >
+        <tr>
+          <!--<th>No</th>-->
+          <th>编号</th>
+          <th>公司抬头</th>
+          <th>发票金额</th>
+          <th>收件人</th>
+          <th>联系电话</th>
+          <th>详细地址</th>
+          <th>邮政编码</th>
+          <th>状态</th>
+          <th>开票时间</th>
+          <th>开票人</th>
+          <th>快递单号</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td>{{row.number}}</td>
+          <td>{{row.companyName}}</td>
+          <td>{{row.amount}}</td>
+          <td>{{row.recipients}}</td>
+          <td>{{row.phone}}</td>
+          <td>{{row.city}}{{row.region}}{{row.address}}</td>
+          <td>{{row.postcode}}</td>
+          <td>
+            <span class="text-success" ng-if="row.status == 1">已开票</span>
+            <span class="text-muted" ng-if="row.status == 0">未开票</span>
+          </td>
+          <td>{{row.operationTime | date: 'yyyy/MM/dd'}}</td>
+          <td>{{row.operator}}</td>
+          <td>
+            <a ng-if="row.status == 1" href="javascript:void(0);" ng-click="openInvoice(row)"> {{row.expressWaybill}} </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

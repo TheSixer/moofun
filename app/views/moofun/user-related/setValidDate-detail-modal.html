@@ -1,0 +1,17 @@
+<div>
+    <mb-modal-header title="期限设置" alerts="alerts" cancel-click="cancel()"></mb-modal-header>
+    <div class="modal-body">
+        <form class="form-horizontal" name="form">
+            <div class="form-group">
+                <div class="col-xs-11 col-sm-11 col-md-10">
+                    <input-combo type="date" title="设置新的到期时间" idname="newEndTime" ng-model="data.validDate.newEndTime"  ng-required="true" err-msg="请按照指定格式输入时间。例如:2016-01-01" output-format="'yyyy-MM-dd'"></input-combo>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-primary" ng-disabled="form.$invalid" ng-click="ok(data.validDate)">确定</button>
+        <button class="btn btn-sm btn-default" ng-click="cancel()">取消</button>
+    </div>
+</div>

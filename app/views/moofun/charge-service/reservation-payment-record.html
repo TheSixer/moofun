@@ -1,0 +1,67 @@
+<div class="row sub-container">
+    <form class="form-horizontal" name="fForm" ng-submit="query(true)">
+        <div class="div-btn-head">
+          <button ng-disabled="fForm.$invalid"  promise-btn="queryPromise" type="submit" class="btn btn-default btn-sm" >查询</button>
+          <button class="btn btn-default btn-sm" type="reset" >重置</button>
+          <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3">
+                <input-combo type="text" title="客户名称" idname="name" maxlength="30" ng-require="true"  ng-model="filter.name"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="手机号"  idname="phone" maxlength="30" err-msg="手机号必须是数字。" ng-require="true"  ng-pattern="'(^[0-9]+$)'" ng-model="filter.phone"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="店名称"  idname="dealerName" ng-require="true"   ng-model="filter.dealerName"></input-combo>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3">
+                <input-combo type="text" title="VIN码"  idname="vin" ng-require="true"   ng-model="filter.vin"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="经销商编码"  idname="dealerCode" ng-require="true"   ng-model="filter.dealerCode"></input-combo>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="mb-grid" cg-busy="{promise: queryPromise}">
+        <div class="div-grid">
+            <table  class="table table-bordered table-condensed table-striped table-middle">
+                <tr>
+                    <th>店代码</th>
+                    <th>店简称</th>
+                    <th>客户姓名</th>
+                    <th>手机号</th>
+                    <th>VIN</th>
+                    <th>充值方式</th>
+                    <th>充值时间</th>
+                    <th>账单号</th>
+                    <th>应收金额</th>
+                    <th>服务费用</th>
+                    <th>实收金额</th>
+                </tr>
+                <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+
+                    <td>{{row.client_id}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.idcardNo}}</td>
+                    <td>{{row.phone}}</td>
+                    <td>{{row.vin}}</td>
+                    <td>{{row.dealerName}} ({{row.dealerCode}})</td>
+                    <td>
+                        {{row.create_time | date: 'yyyy/MM/dd'}}
+                    </td>
+                    <td>
+                      <span ng-if="row.reviewStatus == 1 || row.reviewStatus == 2"> {{row.updatedate | date: 'yyyy/MM/dd'}}</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <mb-pager></mb-pager>
+    </div>
+</div>

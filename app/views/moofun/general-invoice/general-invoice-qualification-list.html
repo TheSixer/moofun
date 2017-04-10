@@ -1,0 +1,43 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"   ng-submit="query(true)">
+    <div class="div-btn-head">
+      <div class="btn-group btn-group-sm">
+        <button type="submit" class="btn btn-default" promise-btn="queryPromise" ng-click="query(true)">查询</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <input-combo type="select" title="申请状态" idname="status" ng-model="filter.status" options="o.code as o.value for o in sourceData"
+          source-data="statusList"></input-combo>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}">
+    <div class="div-grid">
+      <table class="table table-bordered table-condensed table-striped">
+        <tr>
+          <!--<th>No</th>-->
+          <th>申请编号</th>
+          <th>用户手机</th>
+          <th>公司</th>
+          <th>申请日期</th>
+          <th>状态</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td> <a  href="javascript:void(0);" ng-click="openQualification(row)">{{row.id}}</a></td>
+          <td>{{row.phone}}</td>
+          <td>{{row.company}}</td>
+          <td>{{row.createTime | date: "yyyy/MM/dd"}}</td>
+          <td>
+            <span class="text-primary" ng-if="row.status == 0">待审批</span>
+            <span class="text-success" ng-if="row.status == 2">已同意</span>
+            <span class="text-danger" ng-if="row.status == 1">已拒绝</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

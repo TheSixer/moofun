@@ -1,0 +1,16 @@
+<div>
+  <mb-modal-header title="指定获取积分车辆" alerts="alerts" cancel-click="cancel()"></mb-modal-header>
+  <div class="modal-body">
+    <form class="form-horizontal" name="form">
+      <div class="form-group">
+        <div class="col-xs-11 col-sm-11 col-md-10">
+          <input-combo type="select" title="选择车辆" idname="vin" ng-model="data.integral.vin" options="o.code as o.value for o in sourceData" source-data="data.integral.carList" ng-required="true"></input-combo>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-primary" ng-disabled="form.$invalid" ng-click="ok(data.integral)">提交</button>
+    <button class="btn btn-sm btn-default" ng-click="cancel()">取消</button>
+  </div>
+</div>

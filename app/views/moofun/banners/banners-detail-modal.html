@@ -1,0 +1,62 @@
+<div cg-busy="{promise: fileUploadPromise}">
+  <mb-modal-header title="{{data.banners.id ? '编辑广告条' : '新增广告条'}}"  cancel-click="cancel(form)"></mb-modal-header>
+  <div class="modal-body">
+    <form class="form-horizontal" name="form">
+      <div class="form-group">
+        <div class="col-xs-11 col-sm-11 col-md-10">
+          <input-combo type="text" title="广告名称" idname="title" maxlength="30" ng-model="data.banners.title" ng-required="true"></input-combo>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-11 col-sm-11 col-md-10">
+          <label class="control-label col-xs-4 highlight" for="imgfile">图片
+          </label>
+          <div class="col-xs-8">
+              <div class="col-xs-4">
+                <button  name="file" ngf-model-invalid="invalidFile" ngf-pattern="'image/*'"  ngf-accept="'image/*'" ngf-validate="{size: {max: '5MB', min: '10B'}, duration: {max: '5m'}}"  class="btn btn-success btn-sm  m-b" id="imgfile" ngf-select ng-model="file">
+                <i class="fa fa-image"> </i>请选择图片
+                </button>
+              </div>
+              <div class="col-xs-8">
+                &nbsp;
+                <img class="img-responsive img-thumbnail m-b" ngf-size="{width: 100%, height: 100%, quality: 0.5}" ngf-thumbnail="file ||  (data.banners.id && (data.imgPrefixUrl + data.banners.imgUrl + '?x-oss-process=image/quality,Q_40')) ">
+              </div>
+              <div class="col-xs-12 help-block">
+                <ul>
+                  <li class="text-danger" ng-if="invalidFile.$errorMessages.maxSize" >
+                    图片不能超过： {{invalidFile.$errorParam}}
+                  </li>
+                </ul>
+                图片仅接受PNG和JPG格式，大小要求小于5M，长宽比为750*238
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-11 col-sm-11 col-md-10">
+          <input-combo type="text" title="链接地址" idname="forwardUrl" maxlength="98" ng-model="data.banners.forwardUrl" ng-required="true"></input-combo>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-11 col-sm-11 col-md-10">
+          <input-combo type="select" title="顺序" idname="sortOrder" ng-model="data.banners.sortOrder" source-data="data.orderList" ng-required="true"></input-combo>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-11 col-sm-11 col-md-10">
+          <input-combo type="select" title="广告状态" idname="status" ng-model="data.banners.status" source-data="data.statusList" ng-required="true"></input-combo>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-primary" ng-disabled="form.$invalid || ((!data.banners.id && !file ) || (data.banners.id && !data.banners.imgUrl))" promise-btn="fileUploadPromise" ng-click="ok(form)">确定</button>
+    <button class="btn btn-sm btn-default" ng-click="cancel(form)">取消</button>
+  </div>
+</div>

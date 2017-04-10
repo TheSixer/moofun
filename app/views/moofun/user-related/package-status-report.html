@@ -1,0 +1,68 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+    <div class="div-btn-head">
+      <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button>
+      <button class="btn btn-default btn-sm" type="reset" ng-click="reset()" >重置</button>
+      <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <div class="checkbox">
+          <label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="status1" ng-true-value="1" ng-false-value="''" ng-model="filter.status1">服务期
+          </label>
+          <label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="status2" ng-true-value="2" ng-false-value="''" ng-model="filter.status2">关停期
+          </label>
+          <label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="status3" ng-true-value="3" ng-false-value="''" ng-model="filter.status3">销号期
+          </label>
+        </div>
+      </div> 
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <input-combo type="text" title="T-Box呼号" idname="tBox" ng-model="filter.tBox"></input-combo>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <input-combo type="text" title="VIN码" idname="vin" ng-model="filter.vin"></input-combo>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}" >
+    <div class="div-grid" >
+      <table class="table table-bordered table-condensed table-striped" >
+        <tr>
+          <!--<th>No</th>-->
+          <th>Moofun手机号</th>
+          <th>VIN号</th>
+          <th>T - Box呼号</th>
+          <th>套餐状况</th>
+          <th>期限</th>
+          <th>修改期限</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <td>{{row.phone}}</a></td>
+          <td>{{row.vin}}</td>
+          <td>{{row.tBox}}</td>
+          <td>
+            <span ng-if="row.status == 1">服务期</span>
+            <span ng-if="row.status == 2">停机保号期</span>
+            <span ng-if="row.status == 3">销号期</span>
+          </td>
+          <td style="overflow-x:auto;">
+              <span ng-if="row.status == 1">{{row.startTime | date: 'yyyy/MM/dd'}} - {{row.endTime | date: 'yyyy/MM/dd'}}</span>
+              <span ng-if="row.status == 2">{{row.endTime | date: 'yyyy/MM/dd'}}</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="openSet(row)" >修改</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

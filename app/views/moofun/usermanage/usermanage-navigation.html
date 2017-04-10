@@ -1,0 +1,60 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+    <div class="div-btn-head">
+      <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button>
+      <button type="reset" class="btn btn-sm btn-default" ng-click="reset()">重置</button>
+    </div>
+    <div class="form-group">
+        <div class="col-12-6-3">
+          <input-combo type="date" title="起止时间" idname="startTime" ng-model="filter.startTime" err-msg="请按照指定格式输入时间。例如:2016-01-01"
+            output-format="'yyyy-MM-dd'" ng-disabled="false"></input-combo>
+        </div>
+        <div class="col-12-6-3">
+          <input-combo type="date" title="至" idname="endTime" ng-model="filter.endTime" err-msg="请按照指定格式输入时间。例如:2016-01-01" output-format="'yyyy-MM-dd'" ng-disabled="false"></input-combo>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-12-6-3">
+            <input-combo type="text" title="vin码" idname="vin" maxlength="30" ng-require="true"  ng-model="filter.vin"></input-combo>
+        </div>
+        <div class="col-12-6-3">
+            <input-combo type="text" title="用户名称"  idname="name" maxlength="30"  ng-require="true" ng-model="filter.name"></input-combo>
+        </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}" >
+    <div class="div-grid" >
+      <table class="table table-bordered table-condensed table-striped" >
+        <tr>
+          <!--<th>No</th>-->
+          <th>上传时间</th>
+          <th>vin码</th>
+          <th>用户名称</th>
+          <th>导航序列号照片</th>
+          <th>序列号</th>
+          <th>操作</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td>
+              {{row.serverTime | date: 'yyyy-MM-dd'}}
+          </td>
+          <td>{{row.vin}}</td>
+          <td>{{row.name}}</td>
+          <td>
+          <img class="img-responsive img-thumbnail m-b" ngf-size="{width: 50%, height: 50%, quality: 0.5}" src="https://haimamoofun.oss-cn-beijing.aliyuncs.com/{{row.carsPhoto}}?x-oss-process=image/resize,w_150">
+          </td>
+          <td>{{row.carNumbers}}</td>
+          <td>
+            <span class="text-success" ng-if="row.isFlag == 1">已通过</span>
+            <span class="text-danger" ng-if="row.isFlag == 2">已驳回</span>
+            <button type="button" class="btn btn-danger btn-xs "  ng-if="row.isFlag == 0" ng-click="openRefused(row)">驳回</button>
+            <button type="button" class="btn btn-primary btn-xs "  ng-if="row.isFlag == 0" ng-click="openAccpet(row)">通过</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

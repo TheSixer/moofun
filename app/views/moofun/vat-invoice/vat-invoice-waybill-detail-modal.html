@@ -1,0 +1,72 @@
+<div>
+  <mb-modal-header title="增值税发票详情" cancel-click="cancel()"></mb-modal-header>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">Moofun用户手机号</div>
+          <div class="col-12-6-3">{{data.qualification.phone}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">状态</div>
+          <div class="col-12-6-3">{{data.qualification.status == 1?'已开票':'未开票'}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">单位名称</div>
+          <div class="col-12-6-3">{{data.qualification.company}}</div>
+          <div class="col-12-6-3 font-bold ">纳税人识别码</div>
+          <div class="col-12-6-3">{{data.qualification.taxpayerId}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">注册地址</div>
+          <div class="col-12-6-3">{{data.qualification.registerAddress}}</div>
+          <div class="col-12-6-3 font-bold ">注册电话</div>
+          <div class="col-12-6-3">{{data.qualification.registerPhone}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">开户银行</div>
+          <div class="col-12-6-3">{{data.qualification.bank}}</div>
+          <div class="col-12-6-3 font-bold ">银行账户</div>
+          <div class="col-12-6-3">{{data.qualification.bankAccount}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">发票内容</div>
+          <div class="col-12-6-3">{{data.qualification.content}}</div>
+          <div class="col-12-6-3 font-bold ">发票金额</div>
+          <div class="col-12-6-3">{{data.qualification.amount}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">申请日期</div>
+          <div class="col-12-6-3">{{data.qualification.createTime | date: 'yyyy/MM/dd'}}</div>
+          <div class="col-12-6-3 font-bold ">开具日期</div>
+          <div class="col-12-6-3">{{data.qualification.operationTime | date: 'yyyy/MM/dd'}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row text-md">
+          <div class="col-12-6-3 font-bold ">快递编号</div>
+          <div class="col-12-6-3">{{data.qualification.expressWaybill}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-sm w-xs btn-default" ng-click="cancel()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

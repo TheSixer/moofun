@@ -1,0 +1,77 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+    <div class="div-btn-head">
+      <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button>
+      <button type="reset" class="btn btn-sm btn-default" ng-click="reset()">重置</button>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-4">
+        <input-combo type="select" title="车辆绑定状态" idname="status" ng-model="filter.status" options="o.code as o.value for o in sourceData"
+          source-data="statusList"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo ng-show="filter.status === '0'" type="select" title="T-box" idname="tbox" ng-model="filter.tbox" options="o.code as o.value for o in sourceData"
+          source-data="tboxList"></input-combo>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-4">
+        <input-combo type="text" title="Moofun注册手机号" idname="phone" maxlength="30" ng-model="filter.phone"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo type="text" title="昵称" idname="nickname" maxlength="30"ng-model="filter.nickname"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo type="text" title="车主姓名" idname="name" maxlength="50"ng-model="filter.name"></input-combo>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-4">
+        <input-combo type="text" title="绑定车辆车牌号" idname="plateNo" maxlength="30"ng-model="filter.plateNo"></input-combo>
+      </div>
+      <div class="col-12-6-3">
+        <input-combo type="text" title="VIN码" idname="vin" maxlength="50"
+          ng-model="filter.vin"></input-combo>
+      </div>
+    </div>
+<!--     <div class="form-group">
+      <div class="col-xs-12">
+        <p class="help-block padder-md">
+          车主姓名、绑定车辆车牌号、VIN码需输入全部作为条件
+        </p>
+      </div>
+    </div> -->
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}" >
+    <div class="div-grid" >
+      <table class="table table-bordered table-condensed table-striped" >
+        <tr>
+          <!--<th>No</th>-->
+          <th>Moofun注册手机号</th>
+          <th>T-box</th>
+          <th>昵称</th>
+          <th>车主姓名</th>
+          <th>性别</th>
+          <th>绑定车辆车牌号</th>
+          <th>VIN码</th>
+          <th>车型</th>
+          <th>注册时间</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td>{{row.phone}}</td>
+          <td >{{row.tbox || '无'}}</td>
+          <td  style="max-width: 40px; white-space: normal;">{{row.nickname}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.sex}}</td>
+          <td>{{row.plateNo}}</td>
+          <td>{{row.vin || '无'}}</td>
+          <td>{{row.abbrName}}</td>
+          <td>{{row.registTime | date: 'yyyy/MM/dd'}}</td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

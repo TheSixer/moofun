@@ -1,0 +1,57 @@
+<div class="row sub-container">
+
+
+    <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+        <div class="div-btn-head">
+            <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button>
+            <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3" id="useranalysis-condition">
+                <select class="form-control" ng-model="selectdate" ng-change="changedate()"  ng-require="true"  ng-options="o.code as o.value for o in reviewStatusList" >
+                </select>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="date" title="开始时间" idname="startDate" ng-require="true" ng-model="filter.startDate" err-msg="请按照指定格式输入时间。例如:2016-01-01"
+                             output-format="'yyyy-MM-dd'" ng-disabled="ngDisabled"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="date" title="至" idname="endDate" ng-require="true" ng-model="filter.endDate" err-msg="请按照指定格式输入时间。例如:2016-01-01" output-format="'yyyy-MM-dd'"
+                             ng-disabled="ngDisabled"></input-combo>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+    <div class="mb-grid" cg-busy="{promise: queryPromise}">
+        <div class="div-grid">
+            <table class="table table-bordered table-condensed table-striped" >
+                <tr>
+                    <!--<th>No</th>-->
+                    <th rowspan="2" style="vertical-align: middle">日期</th>
+                    <th rowspan="2" style="vertical-align: middle">累计用户总数</th>
+                    <th rowspan="2" style="vertical-align: middle">每日新增激活</th>
+                    <th rowspan="2" style="vertical-align: middle">每日新增注册</th>
+                    <th rowspan="2" style="vertical-align: middle">启动次数</th>
+                    <th colspan="2" style="vertical-align: middle">活跃</th>
+
+                </tr>
+                <tr>
+                    <th>日活</th>
+                    <th>月活</th>
+
+                </tr>
+                <tr class="text-center" ng-repeat="row in grid.rows | orderBy: '-date'">
+                    <td>{{row.date | date: 'yyyy/MM/dd'}}</td>
+                    <td>{{row.userCount}}</td>
+                    <td>{{row.activateCount}}</td>
+                    <td>{{row.registerCount}}</td>
+                    <td>{{row.useCount}}</td>
+                    <td>{{row.activeOfDayCount}}</td>
+                    <td>{{row.activeOfMonthCount}}</td>
+                </tr>
+            </table>
+        </div>
+        <mb-pager></mb-pager>
+    </div>
+</div>

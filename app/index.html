@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<head>
+  <meta charset="utf-8">
+  <title>海马汽车</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+  <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/app.css">
+  <!-- endbuild -->
+</head>
+
+<body ng-app="haimaApp" class="h-full" ng-class="bodyClass" ng-cloak>
+  <div class="div-notification">
+    <uib-alert dismiss-on-timeout=7000 ng-repeat="alert in systemAlert" type="{{alert.type}}" close="systemAlert.splice($index,1)">
+      <span ng-bind="alert.code | translate:alert.param"></span>
+    </uib-alert>
+  </div>
+  <!-- 页面加载动画 -->
+  <div style="text-align: center;" id="pageloadding">
+    <h3 style="color:#4A4A4A;">页面加载中，请稍候。。。</h3>
+    <img style="width:10%" src="images/loading.gif" />
+  </div>
+  <div class="h-full pos-rlt" ui-view onclick="void(0)"></div>
+  </div>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-md5/angular-md5.js"></script>
+  <script src="bower_components/angular-ui-select/dist/select.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="bower_components/angular-i18n/angular-locale_zh-cn.js"></script>
+  <script src="bower_components/ngUpload/ng-upload.js"></script>
+  <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/lodash/lodash.js"></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+  <script src="bower_components/angular-promise-buttons/dist/angular-promise-buttons.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <!--SCRIPTS-->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/app-route.js"></script>
+  <script src="scripts/string-extra.js"></script>
+  <script src="scripts/components/bootstrap-switch.js"></script>
+  <script src="scripts/components/common-grid-operate.js"></script>
+  <script src="scripts/components/common-modal-search.js"></script>
+  <script src="scripts/components/components.js"></script>
+  <script src="scripts/components/config.js"></script>
+  <script src="scripts/components/confirm.js"></script>
+  <script src="scripts/components/directive.js"></script>
+  <script src="scripts/components/filter.js"></script>
+  <script src="scripts/components/hybrid-ui-grid.js"></script>
+  <script src="scripts/components/translate.js"></script>
+  <script src="scripts/controllers/index/change-password.js"></script>
+  <script src="scripts/controllers/index/login.js"></script>
+  <script src="scripts/controllers/index/query.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/controllers/moofun/activity/activity-detail-modal.js"></script>
+  <script src="scripts/controllers/moofun/activity/activity-list.js"></script>
+  <script src="scripts/controllers/moofun/analysis/analysis-reserve.js"></script>
+  <script src="scripts/controllers/moofun/analysis/analysis-user.js"></script>
+  <script src="scripts/controllers/moofun/banners/banners-detail-modal.js"></script>
+  <script src="scripts/controllers/moofun/banners/banners-list.js"></script>
+  <script src="scripts/controllers/moofun/base/base-list-ctrl.js"></script>
+  <script src="scripts/controllers/moofun/general-invoice/general-invoice-apply-list.js"></script>
+  <script src="scripts/controllers/moofun/general-invoice/general-invoice-list.js"></script>
+  <script src="scripts/controllers/moofun/general-invoice/general-invoice-qualification-detail-modal.js"></script>
+  <script src="scripts/controllers/moofun/general-invoice/general-invoice-qualification-list.js"></script>
+  <script src="scripts/controllers/moofun/others/fault-classification.js"></script>
+  <script src="scripts/controllers/moofun/others/feedback.js"></script>
+  <script src="scripts/controllers/moofun/others/message-push.js"></script>
+  <script src="scripts/controllers/moofun/others/questionnaire-survey.js"></script>
+  <script src="scripts/controllers/moofun/others/statistical-analysis.js"></script>
+  <script src="scripts/controllers/moofun/user-related/package-status-report.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/integral-detail.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/integral-give-detail.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/integral-give.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/integral-query.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/integral-reviewed.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/integral-unusual.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/setIntegral.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/usermanage-list.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/usermanage-navigation.js"></script>
+  <script src="scripts/controllers/moofun/usermanage/usermanage-unbindvehicle.js"></script>
+  <script src="scripts/controllers/moofun/vat-invoice/vat-invoice-apply-list.js"></script>
+  <script src="scripts/controllers/moofun/vat-invoice/vat-invoice-list.js"></script>
+  <script src="scripts/controllers/moofun/vat-invoice/vat-invoice-waybill-detail-modal.js"></script>
+  <script src="scripts/controllers/moofun/vehicle-appreciation/vehicle-detail-modal.js"></script>
+  <script src="scripts/controllers/moofun/vehicle-appreciation/vehicle-list.js"></script>
+  <script src="scripts/controllers/welcome.js"></script>
+  <script src="scripts/service/auth.js"></script>
+  <script src="scripts/service/common-api.js"></script>
+  <script src="scripts/service/entities-factory.js"></script>
+  <script src="scripts/service/index-api.js"></script>
+  <script src="scripts/service/services.js"></script>
+  <script src="scripts/service/util.js"></script>
+  <!--SCRIPTS END-->
+  <!-- endbuild -->
+  <!-- 页面加载动画 -->
+  <script>
+  document.body.removeChild(document.getElementById("pageloadding"));
+  </script>
+</body>
+
+</html>

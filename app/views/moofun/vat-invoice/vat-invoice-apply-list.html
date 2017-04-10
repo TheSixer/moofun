@@ -1,0 +1,44 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"   ng-submit="query(true)">
+    <div class="div-btn-head">
+      <div class="btn-group btn-group-sm">
+        <button type="submit" class="btn btn-default" promise-btn="queryPromise" ng-click="query(true)">查询</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        <label class="control-label col-xs-4" for="number">编号</label>
+        <div class="col-xs-8">
+          <input class="form-control" id="number" type="text" ng-model="filter.number" >
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}">
+    <div class="div-grid">
+      <table class="table table-bordered table-condensed table-striped">
+        <tr>
+          <!--<th>No</th>-->
+          <th>编号</th>
+          <th>用户手机</th>
+          <th>单位名称</th>
+          <th>申请日期</th>
+          <th>开票</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td>{{row.number}}</td>
+          <td>{{row.registerPhone}}</td>
+          <td>{{row.company}}</td>
+          <td>{{row.createTime  | date: 'yyyy/MM/dd'}}</td>
+          <td>
+            <span class="text-success" ng-if="row.status == 1">已发送</span>
+            <button ng-if="row.status == 0" type="button" class="btn btn-default btn-xs " ng-click="openInvoice(row)">开具发票</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

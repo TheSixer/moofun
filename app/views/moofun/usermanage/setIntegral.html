@@ -1,0 +1,37 @@
+<div class="row sub-container">
+  <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+    <div class="div-btn-head">
+      <!-- <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button> -->
+      <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+    </div>
+    <div class="form-group">
+      <div class="col-12-6-3">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<text>当前积分比率为<span class="text-primary">1</span>:<span class="text-primary">{{grid.data[0].aftereRate}}</span></text>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="openSet()" >更改比率</button>
+      </div>
+    </div>
+    </div>
+  </form>
+  <hr>
+  <div class="mb-grid" cg-busy="{promise: queryPromise}" >
+    <div class="div-grid" >
+      <table class="table table-bordered table-condensed table-striped" >
+        <tr>
+          <!--<th>No</th>-->
+          <th>时间</th>
+          <th>操作人</th>
+          <th>原来比率</th>
+          <th>变更比率</th>
+        </tr>
+        <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+          <!--<td>{{row.no}}</td>-->
+          <td>{{row.modifiedTime | date: 'yyyy/MM/dd'}}</td>
+          <td>{{row.uid}}</td>
+          <td>1:{{row.beforeRate}}</td>
+          <td>1:{{row.aftereRate}}</td>
+        </tr>
+      </table>
+    </div>
+    <mb-pager></mb-pager>
+  </div>
+</div>

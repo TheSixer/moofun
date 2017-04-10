@@ -1,0 +1,44 @@
+<div class="row sub-container">
+    <form class="form-horizontal" name="fForm" ng-submit="query(true)">
+        <div class="div-btn-head">
+          <button ng-disabled="fForm.$invalid"  promise-btn="queryPromise" type="submit" class="btn btn-default btn-sm" >查询</button>
+        <div class="form-group">
+            <div class="col-12-6-3">
+                <input-combo type="select" title="审核状态" idname="status" ng-model="filter.status" options="o.code as o.value for o in sourceData"
+                  source-data="statusList"></input-combo>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="mb-grid" cg-busy="{promise: queryPromise}">
+        <div class="div-grid">
+            <table  class="table table-bordered table-condensed table-striped">
+                <tr>
+                    <th>客户姓名</th>
+                    <th>电话</th>
+                    <th>vin码</th>
+                    <th>操作人</th>
+                    <th>赠送积分数量</th>
+                    <th>备注内容</th>
+                    <th>操作</th>
+                </tr>
+                <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+
+                    <td>{{row.name}}</td>
+                    <td>{{row.phone}}</td>
+                    <td>{{row.vin}}</td>
+                    <td>{{row.creater}}</td>
+                    <td>{{row.score}}</td>
+                    <td>{{row.remark}}</td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-xs "  ng-if="row.status == 0" ng-click="openRefused(row)">拒绝</button>
+                        <button type="button" class="btn btn-default btn-xs "  ng-if="row.status == 0" ng-click="openAccpet(row)">同意</button>
+                        <span class="text-success" ng-if="row.status == 1">已通过</span>
+                        <span class="text-danger" ng-if="row.status == 2">已拒绝</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <mb-pager></mb-pager>
+    </div>
+</div>

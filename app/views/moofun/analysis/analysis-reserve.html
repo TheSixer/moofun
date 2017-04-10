@@ -1,0 +1,59 @@
+<div class="row sub-container">
+
+
+    <form class="form-horizontal" name="fForm"  ng-submit="query(true)">
+        <div class="div-btn-head">
+            <button  ng-disabled="fForm.$invalid" promise-btn="queryPromise" type="submit" class="btn btn-sm btn-default" >查询</button>
+            <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3" id="useranalysis-condition">
+                <select class="form-control" ng-model="selectdate" ng-change="changedate()"   ng-options="o.code as o.value for o in reviewStatusList" >
+                </select>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="date" title="开始时间" idname="startDate"  ng-model="filter.startDate" err-msg="请按照指定格式输入时间。例如:2016-01-01" output-format="'yyyy-MM-dd'" ng-disabled="ngDisabled"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="date" title="至" idname="endDate"  ng-model="filter.endDate" err-msg="请按照指定格式输入时间。例如:2016-01-01" output-format="'yyyy-MM-dd'"
+                             ng-disabled="ngDisabled"></input-combo>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+    <div class="mb-grid" cg-busy="{promise: queryPromise}" >
+        <div class="div-grid" >
+            <table class="table table-bordered table-condensed table-striped" >
+                <tr>
+                    <th rowspan="2" style="vertical-align: middle">首次使用时间</th>
+                    <th rowspan="2" style="vertical-align: middle">新增用户</th>
+                    <th colspan="8">留存率</th>
+                </tr>
+                <tr>
+                    <th>1天后</th>
+                    <th>2天后</th>
+                    <th>3天后</th>
+                    <th>4天后</th>
+                    <th>5天后</th>
+                    <th>6天后</th>
+                    <th>7天后</th>
+                    <th>30天后</th>
+                </tr>
+                <tr class="text-center" ng-repeat="row in grid.rows | orderBy: 'date':true">
+                    <td>{{row.date | date: 'yyyy/MM/dd'}}</td>
+                    <td>{{row.activateCount}}</td>
+                    <td>{{row.keepOf1DaysCount}}</td>
+                    <td>{{row.keepOf2DaysCount}}</td>
+                    <td>{{row.keepOf3DaysCount}}</td>
+                    <td>{{row.keepOf4DaysCount}}</td>
+                    <td>{{row.keepOf5DaysCount}}</td>
+                    <td>{{row.keepOf6DaysCount}}</td>
+                    <td>{{row.keepOf7DaysCount}}</td>
+                    <td>{{row.keepOf30DaysCount}}</td>
+                </tr>
+            </table>
+        </div>
+        <mb-pager></mb-pager>
+    </div>
+</div>

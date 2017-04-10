@@ -1,0 +1,42 @@
+<div class="row sub-container">
+    <form class="form-horizontal" name="fForm" ng-submit="query(true)">
+        <div class="div-btn-head">
+          <button ng-disabled="fForm.$invalid"  promise-btn="queryPromise" type="submit" class="btn btn-default btn-sm" >查询</button>
+          <button class="btn btn-default btn-sm" type="reset" >重置</button>
+          <a class="btn btn-sm btn-primary" ng-click="exportExcel()" > <i class="fa fa-file-excel-o"></i> 导出Excel</a>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3">
+                <input-combo type="select" title="故障分级" idname="reviewStatus" ng-model="filter.reviewStatus"  ng-require="true"  ng-opt="o.code as o.value for o in sourceData"
+                source-data="reviewStatusList"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="故障代码" idname="name" maxlength="30" ng-require="true"  ng-model="filter.name"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="严重级别"  idname="phone" maxlength="30" err-msg="手机号必须是数字。" ng-require="true"  ng-pattern="'(^[0-9]+$)'" ng-model="filter.phone"></input-combo>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="mb-grid" cg-busy="{promise: queryPromise}">
+        <div class="div-grid">
+            <table  class="table table-bordered table-condensed table-striped table-middle">
+                <tr>
+                    <th>故障类别</th>
+                    <th>故障描述</th>
+                    <th>严重级别</th>
+                    <th>故障分级</th>
+                </tr>
+                <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+
+                    <td>{{row.client_id}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.idcardNo}}</td>
+                    <td>{{row.phone}}</td>
+                </tr>
+            </table>
+        </div>
+        <mb-pager></mb-pager>
+    </div>
+</div>

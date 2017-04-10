@@ -1,0 +1,60 @@
+<div class="row sub-container">
+    <form class="form-horizontal" name="fForm" ng-submit="query(true)">
+        <div class="div-btn-head">
+          <button ng-disabled="fForm.$invalid"  promise-btn="queryPromise" type="submit" class="btn btn-default btn-sm" >查询</button>
+          <button class="btn btn-default btn-sm" type="reset" >重置</button>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3">
+                <input-combo type="text" title="4S店代号" idname="name" maxlength="30" ng-require="true"  ng-model="filter.name"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="客户姓名"  idname="idcardNo" maxlength="30" err-msg="身份证号必须是15位或18位数字。" ng-require="true"  ng-pattern="'(^[0-9]{15}$)|(^[0-9]{18}$)'" ng-model="filter.idcardNo"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="手机号"  idname="phone" maxlength="30" err-msg="手机号必须是数字。" ng-require="true"  ng-pattern="'(^[0-9]+$)'" ng-model="filter.phone"></input-combo>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12-6-3">
+                <input-combo type="text" title="VIN"  idname="vin" ng-require="true"   ng-model="filter.vin"></input-combo>
+            </div>
+            <div class="col-12-6-3">
+                <input-combo type="text" title="车型"  idname="dealerCode" ng-require="true"   ng-model="filter.dealerCode"></input-combo>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <div class="mb-grid" cg-busy="{promise: queryPromise}">
+        <div class="div-grid">
+            <table  class="table table-bordered table-condensed table-striped table-middle">
+                <tr>
+                    <th>
+                      <label>
+                        <input type="checkbox" ng-model="checkAll" ng-change="SelectAll()"> 全选
+                      </label>
+                    </th>
+                    <th>4S店代号</th>
+                    <th>客户姓名</th>
+                    <th>手机号</th>
+                    <th>VIN</th>
+                    <th>车型</th>
+
+                </tr>
+                <tr class="text-center" ng-repeat="row in grid.rows track by $index">
+                    <td>
+                      <label>
+                        <input type="checkbox" ng-model="row.id" ng-change="SelectAll()">
+                      </label>
+                    </td>
+                    <td>{{row.client_id}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.phone}}</td>
+                    <td>{{row.idcardNo}}</td>
+                    <td>{{row.vin}}</td>
+                </tr>
+            </table>
+        </div>
+        <mb-pager></mb-pager>
+    </div>
+</div>
